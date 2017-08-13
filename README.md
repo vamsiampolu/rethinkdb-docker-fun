@@ -72,6 +72,12 @@ r.table('authors').update({type: 'fictional'}).run(conn, (err, res) => {})
 r.table('authors').delete(filterCriteria).run(conn, (err, res) => {})
 ```
 
+In addition, one can also append to a row in a table that is known to contain an array:
+
+```
+r.table('authors').filter(r.row('name').eq('something')).append(newValue).run(conn, (err, res) => {})
+```
+
 4. The data in a table can be queried using `.filter` method:
 
 ```js
@@ -99,6 +105,18 @@ r.table('authors').changes().run(conn, (err, cursor) => {
   })
 })
 ```
+
+Rethinkdb Query Operators
+
+|Operator Function| Description|
+|:---------------:|:----------:|
+|.eq(value)|Match all values for a row in a table are equal to a given value|
+|.ne(value)|Match all values for  a row in a table are not equal to a given value|
+|.gt(value)|Match all values for a row in a table that are greater than a given value|
+|.ge(value)|Match all values for a row that are greater than or equal to a given value|
+|.lt(value)|Match all values for a row that are smaller than a given value|
+|.le(value)|Match all values for a row that are smaller than or equal to a given value|
+
 
 The information here is based on the following links:
 
