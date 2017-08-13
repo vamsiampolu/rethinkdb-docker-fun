@@ -106,6 +106,8 @@ r.table('authors').changes().run(conn, (err, cursor) => {
 })
 ```
 
+---
+
 Rethinkdb Query Operators
 
 |Operator Function| Description|
@@ -117,6 +119,27 @@ Rethinkdb Query Operators
 |.lt(value)|Match all values for a row that are smaller than a given value|
 |.le(value)|Match all values for a row that are smaller than or equal to a given value|
 
+---
+
+**ReQL**
+
++ Rethinkdb has made several decisions that differentiate it from `Mongodb`, it requires the use of a specific query language embedded within the client language for the purpose of querying the database.
+
++ It looks like queries created on the client are serializable and sent to the server for execution but are not available to the client directly.
+
++ Queries use fluent interfaces, to send a query to the server, use `.run(connection)` method.
+
+> Queries can be constructed in the query language and stored until execution is required, then `.run` can be added to the end of the chain.
+
++ Rethinkdb has support for specifying queries as lambdas, this is accomplished by overloading operators on the host language (only works for simple binary operators), more complex operators would require the use of the query language.
+
++ Rethinkdb provides a `r.js` where one can specify JS as a string, this is then executed on the server using a sandboxed V8 engine.
+
+> `eval` used here
+
++ Rethinkdb supports lazy query execution, it splits queries into multiple  stages and executes them in parallel.
+
++ Rethinkdb does not have a Query Optimizer (from the docs), it does contain a query profiler in the admin interface.
 
 The information here is based on the following links:
 
