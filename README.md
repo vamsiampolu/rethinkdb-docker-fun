@@ -92,3 +92,12 @@ r.table('authors').changes().run(conn, (err, cursor) => {
   })
 })
 ```
+
+The information here is based on the following links:
+
+[Deamon](https://www.rethinkdb.com/docs/start-on-startup/)
+[JS Driver](https://www.rethinkdb.com/docs/guide/javascript/)
+[Docker](https://hub.docker.com/_/rethinkdb/)
+[Custom Dockerfile from](https://hub.docker.com/r/blakek13/node-rethinkdb/)
+
+> The custom dockerfile is published onto dockerhub, but it only uses Node v6, I wanted to use Node v8.
