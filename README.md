@@ -1,11 +1,18 @@
 I have created a docker file to use rethinkdb without having to install it.
 
 Unlike mongodb, it looks like rethinkdb does not have a REPL to interact with it,
-there is an adminstrative interface but attempts to expose the port from the container
+there is an adminstrative interface 
+
+Initially, I ended up using the NODE repl inside the database because attempts to expose the port from the container
 to the host did not take off.
 
-I ended up using the NODE repl inside the database. Rethinkdb requires that we use a driver to
-connect to it.
+In such cases, Rethinkdb requires that we use a driver to connect to it.
+
+Then I remembered that ports are assigned randomly by docker when we forward ports from the container to the host and also that using `-p` and listing all the ports would not work. Fixing those errors, the command to expose the database port and the admin interface looked like.
+
+```bash
+docker run -p 8080:8080 -p 28015:28015 rethinkdb-node
+```
 
 To build and run the docker container:
 
